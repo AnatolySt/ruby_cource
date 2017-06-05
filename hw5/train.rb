@@ -1,6 +1,7 @@
 class Train
   include Manufacturer
   attr_accessor :speed, :route, :current_station, :name, :type, :vagons
+  @@instances = {}
 
   def initialize(name, type, number)
     @name = name
@@ -8,11 +9,11 @@ class Train
     @vagons = []
     @speed = 0
     @num = 0
-    @number = number
+    @@instances[number] = self
   end
 
   def self.find(number)
-    self.find { |train| train.number == number }
+    @@instances[number]
   end
 
   def speed_up

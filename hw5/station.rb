@@ -1,15 +1,16 @@
 class Station
   attr_accessor :name
+  @@instances = []
 
   def initialize(name)
     @name = name    
     @on_station = []
+    @@instances << self
   end
 
   def self.all
-    ObjectSpace.each_object(self).to_a
+    @@instances.inspect
   end
-
 
   def arrive(train_obj)
     @on_station << train_obj

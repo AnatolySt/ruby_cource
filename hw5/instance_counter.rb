@@ -27,7 +27,6 @@ module InstanceCounter
 
 end
 
-
 class Native
   include InstanceCounter
 

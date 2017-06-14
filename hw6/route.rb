@@ -3,6 +3,7 @@ class Route
 
   def initialize(first, last)
     @route_arr = [first, last]
+    validate!
   end
 
   def add_station(station, num = -2)
@@ -17,5 +18,12 @@ class Route
     @route_arr.each_with_index do |station, id|
       puts "#{id}. #{station.name} "
     end
+  end
+
+  protected
+
+  def validate!
+    raise "Для создания маршрута вы должны передать объекты станций" unless @route_arr[0].is_a?(Station) && @route_arr[1].is_a?(Station)
+    true
   end
 end

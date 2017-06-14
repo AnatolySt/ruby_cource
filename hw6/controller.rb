@@ -39,23 +39,20 @@ class Controller
   end
 
   def create_train
-    begin
-      puts "Выберите тип поезда: (P - пассажирский, C - товарный)"
-      train_type = gets.chomp.upcase
-      puts "Введите номер поезда"
-      train_number = gets.chomp
-      puts "Введите название поезда"
-      train_name = gets.chomp
-      if train_type == "P"
-        @trains << PassengerTrain.new(train_name, train_number)
-      elsif train_type == "C"
-        @trains << CargoTrain.new(train_name, train_number)
-      else
-        print "Ошибка!"
-      end
-    rescue Exception => e
-      puts e.message
-    end
+    puts "Выберите тип поезда: (P - пассажирский, C - товарный)"
+    train_type = gets.chomp.upcase
+    puts "Введите номер поезда"
+    train_number = gets.chomp
+    puts "Введите название поезда"
+    train_name = gets.chomp
+    if train_type == "P"
+      @trains << PassengerTrain.new(train_name, train_number)
+    elsif train_type == "C"
+      @trains << CargoTrain.new(train_name, train_number)
+    else
+      print "Ошибка!"
+  rescue Exception => e
+    puts e.message
   end
 
   def show_trains

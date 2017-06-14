@@ -7,12 +7,13 @@ class Carriage
 
   def initialize(type)
     @type = type
+    validate!
   end
 
   protected
 
   def validate!
-    raise "Тип поезда должен быть 'Passenger' или 'Cargo'" if (type != 'Passenger') && (type != 'Cargo')
+    raise "Тип вагона должен быть 'Passenger' или 'Cargo'" if (type != 'Passenger') && (type != 'Cargo')
     true
   end
 end

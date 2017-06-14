@@ -8,7 +8,7 @@ class Train
   @@instances = {}
   NUMBER_FORMAT = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i
 
-  def initialize(name, type, number)
+  def initialize(name, number, type)
     @name = name
     @type = type
     @number = number # номер поезда

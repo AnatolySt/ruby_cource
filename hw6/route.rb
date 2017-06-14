@@ -1,4 +1,7 @@
+require_relative 'validation.rb'
+
 class Route
+  include Validation
   attr_accessor :route_arr
 
   def initialize(first, last)

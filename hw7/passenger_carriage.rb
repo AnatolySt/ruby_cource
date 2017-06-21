@@ -8,8 +8,7 @@ class PassengerCarriage < Carriage
   end
 
   def take_seat
-    self.seats_free
-    if @seats_free > 0
+    if self.seats_free > 0
       @seats_taken += 1
     else
       puts "Нет свободного места в вагоне"

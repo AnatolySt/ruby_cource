@@ -8,8 +8,7 @@ class CargoCarriage < Carriage
   end
 
   def take_amount(quantity)
-    self.amount_free
-    if @amount_free > quantity
+    if self.amount_free > quantity
       @amount_taken += quantity
     else
       puts "Недостаточно свободного места в вагоне"

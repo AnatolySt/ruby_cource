@@ -173,8 +173,7 @@ class Controller
     puts "Выберите станцию (номер)"
     station_id = gets.chomp.to_i
 
-    block = lambda { |train| print "#{train.name}, #{train.type}, #{train.vagons.length} \n" }
-    @stations[station_id].trains_to_proc(block)
+    @stations[station_id].each_train { |train| print "#{train.name}, #{train.type}, #{train.vagons.length} \n" }
   end
 
   def show_train_carriages
@@ -182,13 +181,13 @@ class Controller
     puts "Выберите поезд (номер)"
     train_id = gets.chomp.to_i
 
-    if @trains[train_id].type == "Passenger"      
-      block = lambda { |index, vagon| print "Вагон №#{index + 1}: количество занятых мест - #{vagon.seats_taken}, свободных мест - #{vagon.seats_free} \n" }
-    elsif @trains[train_id].type == "Cargo"
-      block = lambda { |index, vagon| print "Вагон №#{index +1}: занятый объем - #{vagon.amount_taken}, доступный объем - #{vagon.amount_free} \n" }
+    @trains[train_id].each_carriage do |index, vagon|
+      if @trains[train_id].type == "Passenger"
+        print "Вагон №#{index + 1}: количество занятых мест - #{vagon.seats_taken}, свободных мест - #{vagon.seats_free} \n"
+      elsif @trains[train_id].type == "Cargo"
+        print "Вагон №#{index +1}: занятый объем - #{vagon.amount_taken}, доступный объем - #{vagon.amount_free} \n"
+      end          
     end
-
-    @trains[train_id].carriages_to_proc(block)
   end
 
   def take_carriage_space
@@ -196,13 +195,13 @@ class Controller
     puts "Выберите поезд (номер)"
     train_id = gets.chomp.to_i
 
-    if @trains[train_id].type == "Passenger"
-       block = lambda { |index, vagon| print "Вагон №#{index}: количество занятых мест - #{vagon.seats_taken}, свободных мест - #{vagon.seats_free} \n" }
-    elsif @trains[train_id].type == "Cargo"
-      block = lambda { |index, vagon| print "Вагон №#{index}: занятый объем - #{vagon.amount_taken}, доступный объем - #{vagon.amount_free} \n" }
+    @trains[train_id].each_carriage do |index, vagon|
+      if @trains[train_id].type == "Passenger"
+        print "Вагон №#{index + 1}: количество занятых мест - #{vagon.seats_taken}, свободных мест - #{vagon.seats_free} \n"
+      elsif @trains[train_id].type == "Cargo"
+        print "Вагон №#{index +1}: занятый объем - #{vagon.amount_taken}, доступный объем - #{vagon.amount_free} \n"
+      end          
     end
-
-    @trains[train_id].carriages_to_proc(block)
 
     puts "Выберите вагон (номер)"
     vagon_id = gets.chomp.to_i

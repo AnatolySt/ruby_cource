@@ -67,7 +67,7 @@ class Train
     @next_station = @route.route_arr[@num + 1]
   end
 
-  def carriages_to_proc(proc)
+  def carriages_to_proc(&proc)
     @vagons.each_with_index { |vagon_obj, index| proc.call(index, vagon_obj) }
   end
 

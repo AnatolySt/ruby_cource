@@ -32,8 +32,8 @@ class Station
     @on_station.delete(train)
   end
 
-  def trains_to_proc(proc)
-    @on_station.each { |train_obj| proc.call(train_obj) }
+  def each_train(&block)
+    @on_station.each { |train_obj| block.call(train_obj) }
   end
 
   protected

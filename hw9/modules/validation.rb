@@ -21,6 +21,8 @@ module Validation
       end
     end
 
+    private
+
     def presence(value)
       raise "Presense error" if value.nil? || value.to_s.empty?
     end
@@ -30,7 +32,7 @@ module Validation
     end
 
     def type(value, type)
-      raise "Type error" if value.instance_of?(type[0])
+      raise "Type error" unless value.instance_of?(type[0])
     end
 
     def valid?
